@@ -7,7 +7,7 @@
  */
 
 namespace App\Http\Controllers;
-use app\Todo;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -58,12 +58,13 @@ class TodoController extends Controller
         if($isSaved = $this->model->create(request()->all()))
             $data = [
                 'success'=>true,
+                'message'=>'To do successfully saved',
                 'response'=>$isSaved
             ];
         else
             $data = [
                 'success'=>false,
-                'message'=>'Cant create'
+                'message'=>'Ops!!! can not create todo'
             ];
         return response()->json($data);
     }
