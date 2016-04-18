@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 class="page-header text-center">Todo List</h1>
+    <table class="table table-responsive table-striped table-bordered">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-control input-sm" ng-model="todo.priority_id" style="background: lightgray">
+                                <option value="" disabled selected>Select task priority</option>
+                                <option value="{{priority.id}}" ng-repeat="priority in priorityList" ng-style="{'color':'#'+priority.color}">{{priority.title}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="todo.title" class="form-control input-sm">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" ng-click="addNew()" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add</button>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>Done</th>
+                <th>Title</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="todo in todoList">
+                <td><input type="checkbox" ng-model="checkBoxes[todo.id]" ng-checked="todo.done" ng-change="changeStatus(todo.id,checkBoxes[todo.id])"/></td>
+                <td ng-style="{'color': '#'+todo.color}">
+                    <span ng-if="todo.done" ng-style="{'text-decoration' : 'line-through'}">{{todo.title}}</span>
+                    <span ng-if="!todo.done">{{todo.title}}</span>
+                </td>
+                <td><a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a class="btn btn-danger btn-sm" href="javascript:void(0)" ng-click="remove(todo.id)"><i class="glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>
